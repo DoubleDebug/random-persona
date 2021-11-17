@@ -1,10 +1,20 @@
-# Random persona
+# Random persona API
 
-Generating random personnal data:
-
--   first and last name,
+Generating random personnal data API:
+-   first name,
+-   last name
 -   gender,
 -   age,
--   date of birth,
 -   occupation,
 -   avatar image
+
+Endpoints:
+-   randomPersona (first name, last name, gender, age, occupation, avatar)
+-   randomName (first name, last name, gender)
+-   randomOccupation (occupation)
+-   randomAvatar (gender, avatar)
+
+The data is static and taken from these sources:
+-   https://www.verywellfamily.com
+-   https://www.rong-chang.com
+-   https://www.careerprofiles.info
