@@ -12,14 +12,13 @@ export function pickRandomAge(rangeStart: number, rangeEnd: number): number {
     return pickRandomItem(range);
 }
 
-export function pickRandomDate(age: number): Date {
-    const year = new Date().getFullYear() - age;
-    console.log('y', year);
-    const rangeStart = new Date(year, 1);
-    const rangeEnd = new Date(year + 1, 1);
-    console.log(rangeStart, rangeEnd);
-    return new Date(
-        rangeStart.getTime() +
-            Math.random() * (rangeEnd.getTime() - rangeStart.getTime())
-    );
+export function pickRandomSeed(): string {
+    let result = '';
+    let characters = 'abcdefghijklmnopqrstuvwxyz';
+    for (let i = 0; i < 10; i++) {
+        result += characters.charAt(
+            Math.floor(Math.random() * characters.length)
+        );
+    }
+    return result;
 }
