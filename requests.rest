@@ -1,0 +1,9 @@
+GET http://localhost:8080/randomPersona
+
+###
+
+GET http://localhost:8080/randomPersona?gender=male
+
+###
+
+GET http://localhost:8080/randomPersona?gender=female
