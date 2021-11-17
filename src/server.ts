@@ -17,6 +17,9 @@ const avatarURL = process.env.AVATAR_URL || 'https://avatars.dicebear.com/api';
 app.use(express.json());
 
 // Routes
+app.get('/', (_, res) => {
+    res.send('Welcome to the Random Persona API!');
+});
 app.get('/randomPersona', (req, res) =>
     randomPersona(req, res, dataPath, avatarURL)
 );
