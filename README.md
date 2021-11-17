@@ -13,3 +13,8 @@ Endpoints:
 -   randomName (first name, last name, gender)
 -   randomOccupation (occupation)
 -   randomAvatar (gender, avatar)
+
+Data: The data is static and taken from these sources:
+-   https://www.verywellfamily.com
+-   https://www.rong-chang.com
+-   https://www.careerprofiles.info
