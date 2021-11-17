@@ -14,7 +14,7 @@ Endpoints:
 -   randomOccupation (occupation)
 -   randomAvatar (gender, avatar)
 
-Data: The data is static and taken from these sources:
+The data is static and taken from these sources:
 -   https://www.verywellfamily.com
 -   https://www.rong-chang.com
 -   https://www.careerprofiles.info
