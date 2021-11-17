@@ -8,7 +8,7 @@ import { randomAvatar } from './endpoints/randomAvatar.js';
 // Server configuration
 dotenv.config();
 const app = express();
-const port = Number(process.env.PORT) || 8080;
+const port = Number(process.env.PORT) || 3000;
 const hostname = process.env.HOSTNAME || 'localhost';
 const dataPath = process.env.DATA_PATH || './data';
 const avatarURL = process.env.AVATAR_URL || 'https://avatars.dicebear.com/api';
