@@ -1,10 +1,15 @@
 # Random persona
 
-Generating random personnal data:
-
--   first and last name,
+Generating random personnal data API:
+-   first name,
+-   last name
 -   gender,
 -   age,
--   date of birth,
 -   occupation,
 -   avatar image
+
+Endpoints:
+-   randomPersona (first name, last name, gender, age, occupation, avatar)
+-   randomName (first name, last name, gender)
+-   randomOccupation (occupation)
+-   randomAvatar (gender, avatar)
