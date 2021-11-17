@@ -12,7 +12,8 @@
     "author": "Double Debug",
     "license": "ISC",
     "dependencies": {
-        "fs": "0.0.1-security"
+        "fs": "0.0.1-security",
+        "express": "^4.17.1"
     },
     "devDependencies": {
         "@babel/cli": "^7.16.0",
