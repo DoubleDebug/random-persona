@@ -1,4 +1,4 @@
-# Random persona
+# Random persona API
 
 Generating random personnal data API:
 -   first name,
