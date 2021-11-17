@@ -5,7 +5,7 @@
     "description": "Random personnal data generator",
     "main": "build/server.js",
     "scripts": {
-        "build": "babel src/server.ts --out-file build/server.js",
+        "build": "npx babel --presets @babel/preset-typescript src --out-dir build --extensions .ts",
         "watch": "nodemon --exec \"node --loader ts-node/esm src/server.ts\" src/server.ts",
         "start": "node build/server.js"
     },
@@ -15,10 +15,9 @@
         "fs": "0.0.1-security"
     },
     "devDependencies": {
-        "@babel/cli": "^7.15.7",
-        "@babel/core": "^7.15.8",
-        "@babel/preset-env": "^7.15.8",
-        "@babel/preset-typescript": "^7.15.0",
+        "@babel/cli": "^7.16.0",
+        "@babel/core": "^7.16.0",
+        "@babel/preset-typescript": "^7.16.0",
         "@types/dotenv": "^8.2.0",
         "@types/express": "^4.17.13",
         "@types/node": "^16.10.4",
