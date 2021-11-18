@@ -35,19 +35,15 @@ export function randomAvatar(
         }
     }
 
-    try {
-        // pick random avatar
-        const randomAvatar = {
-            gender: gender,
-            avatar: `${avatarURL}/${gender}/${formatName(seed)}.svg`,
-        };
+    // pick random avatar
+    const randomAvatar = {
+        gender: gender,
+        avatar: `${avatarURL}/${gender}/${formatName(seed)}.svg`,
+    };
 
-        console.log(randomAvatar);
-        res.status(200).json({
-            ...randomAvatar,
-            success: true,
-        });
-    } catch {
-        res.status(400).send('Bad parameter.');
-    }
+    console.log(randomAvatar);
+    res.status(200).json({
+        ...randomAvatar,
+        success: true,
+    });
 }
