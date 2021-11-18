@@ -21,7 +21,10 @@ export function randomPersona(
         if (isGenderValid(req.query.gender)) {
             gender = req.query.gender.toString();
         } else {
-            res.status(400).send('Bad parameter.');
+            res.status(400).send({
+                success: false,
+                message: 'Bad parameter.',
+            });
             return;
         }
     }
@@ -42,5 +45,8 @@ export function randomPersona(
     };
 
     console.log(randomPersona);
-    res.status(200).json(randomPersona);
+    res.status(200).json({
+        ...randomPersona,
+        success: true,
+    });
 }

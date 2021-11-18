@@ -14,7 +14,10 @@ export function randomAvatar(
         if (isNameValid(req.query.name)) {
             seed = req.query.name.toString();
         } else {
-            res.status(400).send('Bad parameter.');
+            res.status(400).send({
+                success: false,
+                message: 'Bad parameter.',
+            });
             return;
         }
     }
@@ -24,7 +27,10 @@ export function randomAvatar(
         if (isGenderValid(req.query.gender)) {
             gender = req.query.gender.toString();
         } else {
-            res.status(400).send('Bad parameter.');
+            res.status(400).send({
+                success: false,
+                message: 'Bad parameter.',
+            });
             return;
         }
     }
@@ -37,7 +43,10 @@ export function randomAvatar(
         };
 
         console.log(randomAvatar);
-        res.status(200).json(randomAvatar);
+        res.status(200).json({
+            ...randomAvatar,
+            success: true,
+        });
     } catch {
         res.status(400).send('Bad parameter.');
     }

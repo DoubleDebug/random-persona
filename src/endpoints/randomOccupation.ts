@@ -12,5 +12,8 @@ export function randomOccupation(res: Response, dataPath: string): void {
     };
 
     console.log(randomOccupation);
-    res.status(200).json(randomOccupation);
+    res.status(200).json({
+        ...randomOccupation,
+        success: true,
+    });
 }
