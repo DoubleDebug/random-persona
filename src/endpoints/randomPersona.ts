@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { pickRandomAge, pickRandomItem } from '../utils/pickRandomItem.js';
 import { dataToJSON } from '../utils/dataToJSON.js';
 import { formatName } from '../utils/formatName.js';
+import { isGenderValid } from '../utils/dataValidation.js';
 
 export function randomPersona(
     req: Request,
@@ -17,7 +18,12 @@ export function randomPersona(
     // parameters
     let gender = pickRandomItem(['male', 'female']);
     if (req.query.gender) {
-        gender = req.query.gender.toString();
+        if (isGenderValid(req.query.name)) {
+            gender = req.query.gender.toString();
+        } else {
+            res.status(400).send('Bad parameter.');
+            return;
+        }
     }
     const age = pickRandomAge(18, 88); // ages from 18 to 88
     const name = {
@@ -26,19 +32,15 @@ export function randomPersona(
     };
     const fullName = name.first + ' ' + name.last;
 
-    try {
-        // pick random persona
-        const randomPersona = {
-            name: name,
-            gender: gender,
-            age: age,
-            occupation: pickRandomItem(occupations.data),
-            avatar: `${avatarURL}/${gender}/${formatName(fullName)}.svg`,
-        };
+    // pick random persona
+    const randomPersona = {
+        name: name,
+        gender: gender,
+        age: age,
+        occupation: pickRandomItem(occupations.data),
+        avatar: `${avatarURL}/${gender}/${formatName(fullName)}.svg`,
+    };
 
-        console.log(randomPersona);
-        res.status(200).json(randomPersona);
-    } catch {
-        res.status(400).send('Bad parameter.');
-    }
+    console.log(randomPersona);
+    res.status(200).json(randomPersona);
 }

@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { pickRandomItem } from '../utils/pickRandomItem.js';
 import { dataToJSON } from '../utils/dataToJSON.js';
+import { isGenderValid } from '../utils/dataValidation.js';
 
 export function randomName(
     req: Request,
@@ -14,22 +15,23 @@ export function randomName(
     // parameters
     let gender = pickRandomItem(['male', 'female']);
     if (req.query.gender) {
-        gender = req.query.gender.toString();
+        if (isGenderValid(req.query.name)) {
+            gender = req.query.gender.toString();
+        } else {
+            res.status(400).send('Bad parameter.');
+            return;
+        }
     }
 
-    try {
-        // pick random name
-        const randomName = {
-            name: {
-                first: pickRandomItem(firstNames.data[gender]),
-                last: pickRandomItem(lastNames.data),
-            },
-            gender: gender,
-        };
+    // pick random name
+    const randomName = {
+        name: {
+            first: pickRandomItem(firstNames.data[gender]),
+            last: pickRandomItem(lastNames.data),
+        },
+        gender: gender,
+    };
 
-        console.log(randomName);
-        res.status(200).json(randomName);
-    } catch {
-        res.status(400).send('Bad parameter.');
-    }
+    console.log(randomName);
+    res.status(200).json(randomName);
 }
