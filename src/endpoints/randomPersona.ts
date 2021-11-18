@@ -18,7 +18,7 @@ export function randomPersona(
     // parameters
     let gender = pickRandomItem(['male', 'female']);
     if (req.query.gender) {
-        if (isGenderValid(req.query.name)) {
+        if (isGenderValid(req.query.gender)) {
             gender = req.query.gender.toString();
         } else {
             res.status(400).send('Bad parameter.');
