@@ -1,9 +1,0 @@
-GET http://localhost:3000/randomPersona
-
-###
-
-GET http://localhost:3000/randomPersona?gender=male
-
-###
-
-GET http://localhost:3000/randomPersona?gender=female
