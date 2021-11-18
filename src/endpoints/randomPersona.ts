@@ -46,7 +46,7 @@ export function randomPersona(
 
     console.log(randomPersona);
     res.status(200).json({
-        ...randomPersona,
         success: true,
+        ...randomPersona,
     });
 }

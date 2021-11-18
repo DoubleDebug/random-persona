@@ -37,7 +37,7 @@ export function randomName(
 
     console.log(randomName);
     res.status(200).json({
-        ...randomName,
         success: true,
+        ...randomName,
     });
 }

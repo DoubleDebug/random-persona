@@ -43,7 +43,7 @@ export function randomAvatar(
 
     console.log(randomAvatar);
     res.status(200).json({
-        ...randomAvatar,
         success: true,
+        ...randomAvatar,
     });
 }
