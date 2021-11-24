@@ -8,6 +8,7 @@ coverage
 build
 
 # misc
+misc
 .DS_Store
 .rest
 .env

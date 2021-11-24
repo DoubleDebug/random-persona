@@ -12,6 +12,7 @@
     "author": "Double Debug",
     "license": "ISC",
     "dependencies": {
+        "cors": "^2.8.5",
         "dotenv": "^10.0.0",
         "express": "^4.17.1",
         "fs": "0.0.1-security"
@@ -20,6 +21,7 @@
         "@babel/cli": "^7.16.0",
         "@babel/core": "^7.16.0",
         "@babel/preset-typescript": "^7.16.0",
+        "@types/cors": "^2.8.12",
         "@types/dotenv": "^8.2.0",
         "@types/express": "^4.17.13",
         "@types/node": "^16.10.4",
