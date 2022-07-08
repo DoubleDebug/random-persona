@@ -7,7 +7,7 @@
     },
     "servers": [
         {
-            "url": "random-persona.herokuapp.com",
+            "url": "https://random-persona.herokuapp.com",
             "description": "Live preview hosted on Heroku"
         }
     ],
