@@ -1,6 +1,6 @@
 # Random persona API
 
-Generating random personnal data:
+Node + Express RestAPI for generating random personnal data, such as:
 
 - first name,
 - last name
@@ -21,3 +21,7 @@ The data is static and taken from these sources:
 - https://www.verywellfamily.com
 - https://www.rong-chang.com
 - https://www.careerprofiles.info
+
+# Documentation
+
+Find the OpenAPI specification (generated using the SwaggerUI tool) [here](https://random-persona.herokuapp.com).
