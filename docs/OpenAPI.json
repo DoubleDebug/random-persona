@@ -1,0 +1,316 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Random Persona API",
+        "description": "Generating random personnal data. Learn more about this project [here.](https://github.com/DoubleDebug/random-persona)",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "random-persona.herokuapp.com",
+            "description": "Live preview hosted on Heroku"
+        }
+    ],
+    "tags": [
+        {
+            "name": "persona",
+            "description": "Generates random first & last name, gender, age, occupation and avatar image URL."
+        },
+        {
+            "name": "name",
+            "description": "Generates random first & last name."
+        },
+        {
+            "name": "occupation",
+            "description": "Generates random occupation."
+        },
+        {
+            "name": "avatar",
+            "description": "Generates random avatar image URL."
+        }
+    ],
+    "paths": {
+        "/random-persona": {
+            "get": {
+                "tags": [
+                    "persona"
+                ],
+                "summary": "Generates random personnal data.",
+                "operationId": "randomPersona",
+                "parameters": [
+                    {
+                        "name": "gender",
+                        "in": "query",
+                        "description": "Gender of the persona to be generated",
+                        "required": false,
+                        "style": "form",
+                        "explode": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "male",
+                                "female"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Response status",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseStatus"
+                                },
+                                "examples": {
+                                    "success": {
+                                        "value": {
+                                            "success": true,
+                                            "data": {
+                                                "name": {
+                                                    "first": "Madison",
+                                                    "last": "Jackson"
+                                                },
+                                                "gender": "female",
+                                                "age": 43,
+                                                "occupation": "Carpenter",
+                                                "avatar": "https://avatars.dicebear.com/api/female/madison-jackson.svg"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad parameter in the API request.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseStatus"
+                                },
+                                "examples": {
+                                    "failure": {
+                                        "value": {
+                                            "success": false,
+                                            "message": "Bad parameter - gender."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/random-name": {
+            "get": {
+                "tags": [
+                    "name"
+                ],
+                "summary": "Generates random first & last name.",
+                "operationId": "randomName",
+                "parameters": [
+                    {
+                        "name": "gender",
+                        "in": "query",
+                        "description": "Gender of the persona to be generated",
+                        "required": false,
+                        "style": "form",
+                        "explode": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "male",
+                                "female"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Response status",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseStatus"
+                                },
+                                "examples": {
+                                    "success": {
+                                        "value": {
+                                            "success": true,
+                                            "data": {
+                                                "name": {
+                                                    "first": "Madison",
+                                                    "last": "Jackson"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad parameter in the API request.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseStatus"
+                                },
+                                "examples": {
+                                    "failure": {
+                                        "value": {
+                                            "success": false,
+                                            "message": "Bad parameter - gender."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/random-occupation": {
+            "get": {
+                "tags": [
+                    "occupation"
+                ],
+                "summary": "Generates random occupation (job title).",
+                "operationId": "randomOccupation",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Response status",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseStatus"
+                                },
+                                "examples": {
+                                    "success": {
+                                        "value": {
+                                            "success": true,
+                                            "data": {
+                                                "occupation": "Carpenter"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/random-avatar": {
+            "get": {
+                "tags": [
+                    "avatar"
+                ],
+                "summary": "Generates random avatar image URL.",
+                "operationId": "randomAvatar",
+                "parameters": [
+                    {
+                        "name": "gender",
+                        "in": "query",
+                        "description": "Gender of the persona to be generated",
+                        "required": false,
+                        "style": "form",
+                        "explode": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "male",
+                                "female"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Name of the persona to be generated",
+                        "required": false,
+                        "style": "form",
+                        "explode": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Response status",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseStatus"
+                                },
+                                "examples": {
+                                    "success": {
+                                        "value": {
+                                            "success": true,
+                                            "data": {
+                                                "gender": "male",
+                                                "avatar": "https://avatars.dicebear.com/api/male/ninkqkrcdd.svg"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad parameter in the API request.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseStatus"
+                                },
+                                "examples": {
+                                    "failure1": {
+                                        "value": {
+                                            "success": false,
+                                            "message": "Bad parameter - gender."
+                                        }
+                                    },
+                                    "failure2": {
+                                        "value": {
+                                            "success": false,
+                                            "message": "Bad parameter - name."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "ResponseStatus": {
+                "required": [
+                    "success"
+                ],
+                "type": "object",
+                "properties": {
+                    "success": {
+                        "type": "boolean"
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "Error message describing what went wrong",
+                        "example": "Bad parameter - gender."
+                    },
+                    "data": {
+                        "type": "object",
+                        "description": "Requested data for the specific endpoint"
+                    }
+                }
+            }
+        }
+    }
+}
