@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { pickRandomItem, pickRandomSeed } from '../utils/pickRandomItem.js';
-import { isGenderValid, isNameValid } from '../utils/dataValidation.js';
+import { isGenderValid, isQuantityValid } from '../utils/dataValidation.js';
 import { formatName } from '../utils/formatName.js';
 
 export function randomAvatar(
@@ -9,23 +9,10 @@ export function randomAvatar(
   avatarURL: string
 ): void {
   // parameters
-  let seed = pickRandomSeed();
-  if (req.query.name) {
-    if (isNameValid(req.query.name)) {
-      seed = req.query.name.toString();
-    } else {
-      res.status(400).send({
-        success: false,
-        message: 'Bad parameter - name.',
-      });
-      return;
-    }
-  }
-
-  let gender = pickRandomItem(['male', 'female']);
+  let requestedGender: string | null = null;
   if (req.query.gender) {
     if (isGenderValid(req.query.gender)) {
-      gender = req.query.gender.toString();
+      requestedGender = req.query.gender.toString();
     } else {
       res.status(400).send({
         success: false,
@@ -34,16 +21,33 @@ export function randomAvatar(
       return;
     }
   }
+  let quantity = 1;
+  if (req.query.quantity) {
+    if (isQuantityValid(req.query.quantity)) {
+      quantity = Number(req.query.quantity);
+    } else {
+      res.status(400).send({
+        success: false,
+        message:
+          'Bad parameter - quantity. The quantity must be a number between 1 and 1000.',
+      });
+      return;
+    }
+  }
 
-  // pick random avatar
-  const randomAvatar = {
-    gender: gender,
-    avatar: `${avatarURL}/${gender}/${formatName(seed)}.svg`,
-  };
+  // pick random avatars
+  const randomAvatars = [];
+  for (let i = 0; i < quantity; i++) {
+    const gender = requestedGender || pickRandomItem(['male', 'female']);
+    const seed = pickRandomSeed();
+    randomAvatars.push({
+      gender: gender,
+      avatar: `${avatarURL}/${gender}/${formatName(seed)}.svg`,
+    });
+  }
 
-  console.log(randomAvatar);
   res.status(200).json({
     success: true,
-    data: randomAvatar,
+    data: randomAvatars,
   });
 }

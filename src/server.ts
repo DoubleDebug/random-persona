@@ -25,7 +25,9 @@ app.use(cors());
 app.get('/random-persona', (req, res) =>
   randomPersona(req, res, dataPath, avatarURL)
 );
-app.get('/random-occupation', (_, res) => randomOccupation(res, dataPath));
+app.get('/random-occupation', (req, res) =>
+  randomOccupation(req, res, dataPath)
+);
 app.get('/random-name', (req, res) => randomName(req, res, dataPath));
 app.get('/random-avatar', (req, res) => randomAvatar(req, res, avatarURL));
 

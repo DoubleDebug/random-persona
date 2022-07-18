@@ -1,15 +1,16 @@
-export function isNameValid(name: any): boolean {
-    if (!name.length || name.length > 100) {
-        return false;
-    }
+export function isGenderValid(gender: any): boolean {
+  if (!['male', 'female'].includes(gender.toString())) {
+    return false;
+  }
 
-    return true;
+  return true;
 }
 
-export function isGenderValid(gender: any): boolean {
-    if (!['male', 'female'].includes(gender.toString())) {
-        return false;
-    }
+export function isQuantityValid(quantity: any): boolean {
+  const q = Number(quantity);
+  if (Number.isNaN(q) || q < 1 || q > 1000) {
+    return false;
+  }
 
-    return true;
+  return true;
 }

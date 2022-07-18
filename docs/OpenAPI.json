@@ -3,7 +3,7 @@
     "info": {
         "title": "Random Persona API",
         "description": "Generating random personnal data. Learn more about this project [here.](https://github.com/DoubleDebug/random-persona)",
-        "version": "1.0.0"
+        "version": "1.1.0"
     },
     "servers": [
         {
@@ -52,6 +52,20 @@
                                 "female"
                             ]
                         }
+                    },
+                    {
+                        "name": "quantity",
+                        "in": "query",
+                        "description": "Number of persona objects to be generated",
+                        "required": false,
+                        "style": "form",
+                        "explode": true,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1,
+                            "minimum": 1,
+                            "maximum": 1000
+                        }
                     }
                 ],
                 "responses": {
@@ -63,19 +77,58 @@
                                     "$ref": "#/components/schemas/ResponseStatus"
                                 },
                                 "examples": {
-                                    "success": {
+                                    "Example 1 - No parameters": {
                                         "value": {
                                             "success": true,
-                                            "data": {
-                                                "name": {
-                                                    "first": "Madison",
-                                                    "last": "Jackson"
+                                            "data": [
+                                                {
+                                                    "name": {
+                                                        "first": "Madison",
+                                                        "last": "Jackson"
+                                                    },
+                                                    "gender": "female",
+                                                    "age": 43,
+                                                    "occupation": "Carpenter",
+                                                    "avatar": "https://avatars.dicebear.com/api/female/madison-jackson.svg"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "Example 2 - Gender: male, Quantity: 3": {
+                                        "value": {
+                                            "success": true,
+                                            "data": [
+                                                {
+                                                    "name": {
+                                                        "first": "Gabriel",
+                                                        "last": "Gray"
+                                                    },
+                                                    "gender": "male",
+                                                    "age": 51,
+                                                    "occupation": "Diagnostic Medical Sonographer",
+                                                    "avatar": "https://avatars.dicebear.com/api/male/gabriel-gray.svg"
                                                 },
-                                                "gender": "female",
-                                                "age": 43,
-                                                "occupation": "Carpenter",
-                                                "avatar": "https://avatars.dicebear.com/api/female/madison-jackson.svg"
-                                            }
+                                                {
+                                                    "name": {
+                                                        "first": "Elijah",
+                                                        "last": "Lewis"
+                                                    },
+                                                    "gender": "male",
+                                                    "age": 73,
+                                                    "occupation": "Sales Representative",
+                                                    "avatar": "https://avatars.dicebear.com/api/male/elijah-lewis.svg"
+                                                },
+                                                {
+                                                    "name": {
+                                                        "first": "Wyatt",
+                                                        "last": "Gonzales"
+                                                    },
+                                                    "gender": "male",
+                                                    "age": 76,
+                                                    "occupation": "Civil Engineer",
+                                                    "avatar": "https://avatars.dicebear.com/api/male/wyatt-gonzales.svg"
+                                                }
+                                            ]
                                         }
                                     }
                                 }
@@ -90,10 +143,16 @@
                                     "$ref": "#/components/schemas/ResponseStatus"
                                 },
                                 "examples": {
-                                    "failure": {
+                                    "Example 1 - Bad gender parameter": {
                                         "value": {
                                             "success": false,
                                             "message": "Bad parameter - gender."
+                                        }
+                                    },
+                                    "Example 2 - Bad quantity parameter": {
+                                        "value": {
+                                            "success": false,
+                                            "message": "Bad parameter - quantity. The quantity must be a number between 1 and 1000."
                                         }
                                     }
                                 }
@@ -125,6 +184,20 @@
                                 "female"
                             ]
                         }
+                    },
+                    {
+                        "name": "quantity",
+                        "in": "query",
+                        "description": "Number of names to be generated",
+                        "required": false,
+                        "style": "form",
+                        "explode": true,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1,
+                            "minimum": 1,
+                            "maximum": 1000
+                        }
                     }
                 ],
                 "responses": {
@@ -136,15 +209,45 @@
                                     "$ref": "#/components/schemas/ResponseStatus"
                                 },
                                 "examples": {
-                                    "success": {
+                                    "Example 1 - No parameters": {
                                         "value": {
                                             "success": true,
-                                            "data": {
-                                                "name": {
-                                                    "first": "Madison",
-                                                    "last": "Jackson"
+                                            "data": [
+                                                {
+                                                    "name": {
+                                                        "first": "Madison",
+                                                        "last": "Jackson"
+                                                    }
                                                 }
-                                            }
+                                            ]
+                                        }
+                                    },
+                                    "Example 2 - Gender: female, Quantity: 3": {
+                                        "value": {
+                                            "success": true,
+                                            "data": [
+                                                {
+                                                    "name": {
+                                                        "first": "Everly",
+                                                        "last": "Wilson"
+                                                    },
+                                                    "gender": "female"
+                                                },
+                                                {
+                                                    "name": {
+                                                        "first": "Isabella",
+                                                        "last": "Bell"
+                                                    },
+                                                    "gender": "female"
+                                                },
+                                                {
+                                                    "name": {
+                                                        "first": "Victoria",
+                                                        "last": "Evans"
+                                                    },
+                                                    "gender": "female"
+                                                }
+                                            ]
                                         }
                                     }
                                 }
@@ -159,10 +262,16 @@
                                     "$ref": "#/components/schemas/ResponseStatus"
                                 },
                                 "examples": {
-                                    "failure": {
+                                    "Example 1 - Bad gender parameter": {
                                         "value": {
                                             "success": false,
                                             "message": "Bad parameter - gender."
+                                        }
+                                    },
+                                    "Example 2 - Bad quantity parameter": {
+                                        "value": {
+                                            "success": false,
+                                            "message": "Bad parameter - quantity. The quantity must be a number between 1 and 1000."
                                         }
                                     }
                                 }
@@ -179,7 +288,22 @@
                 ],
                 "summary": "Generates random occupation (job title).",
                 "operationId": "randomOccupation",
-                "parameters": [],
+                "parameters": [
+                    {
+                        "name": "quantity",
+                        "in": "query",
+                        "description": "Number of names to be generated",
+                        "required": false,
+                        "style": "form",
+                        "explode": true,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1,
+                            "minimum": 1,
+                            "maximum": 1000
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Response status",
@@ -189,12 +313,30 @@
                                     "$ref": "#/components/schemas/ResponseStatus"
                                 },
                                 "examples": {
-                                    "success": {
+                                    "Example 1 - No parameters": {
                                         "value": {
                                             "success": true,
-                                            "data": {
-                                                "occupation": "Carpenter"
-                                            }
+                                            "data": [
+                                                {
+                                                    "occupation": "Carpenter"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "Example 2 - Quantity: 3": {
+                                        "value": {
+                                            "success": true,
+                                            "data": [
+                                                {
+                                                    "occupation": "Maid & Housekeeper"
+                                                },
+                                                {
+                                                    "occupation": "Meeting Convention & Event Planner"
+                                                },
+                                                {
+                                                    "occupation": "Medical Secretary"
+                                                }
+                                            ]
                                         }
                                     }
                                 }
@@ -228,14 +370,17 @@
                         }
                     },
                     {
-                        "name": "name",
+                        "name": "quantity",
                         "in": "query",
-                        "description": "Name of the persona to be generated",
+                        "description": "Number of names to be generated",
                         "required": false,
                         "style": "form",
                         "explode": true,
                         "schema": {
-                            "type": "string"
+                            "type": "integer",
+                            "default": 1,
+                            "minimum": 1,
+                            "maximum": 1000
                         }
                     }
                 ],
@@ -248,13 +393,34 @@
                                     "$ref": "#/components/schemas/ResponseStatus"
                                 },
                                 "examples": {
-                                    "success": {
+                                    "Example 1 - No parameters": {
                                         "value": {
                                             "success": true,
-                                            "data": {
-                                                "gender": "male",
-                                                "avatar": "https://avatars.dicebear.com/api/male/ninkqkrcdd.svg"
-                                            }
+                                            "data": [
+                                                {
+                                                    "gender": "male",
+                                                    "avatar": "https://avatars.dicebear.com/api/male/ninkqkrcdd.svg"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "Example 2 - Gender: female, Quantity: 3": {
+                                        "value": {
+                                            "success": true,
+                                            "data": [
+                                                {
+                                                    "gender": "female",
+                                                    "avatar": "https://avatars.dicebear.com/api/female/zkwooovxip.svg"
+                                                },
+                                                {
+                                                    "gender": "female",
+                                                    "avatar": "https://avatars.dicebear.com/api/female/okpshqoqvz.svg"
+                                                },
+                                                {
+                                                    "gender": "female",
+                                                    "avatar": "https://avatars.dicebear.com/api/female/mntezxjqkq.svg"
+                                                }
+                                            ]
                                         }
                                     }
                                 }
@@ -269,16 +435,16 @@
                                     "$ref": "#/components/schemas/ResponseStatus"
                                 },
                                 "examples": {
-                                    "failure1": {
+                                    "Example 1 - Bad gender parameter": {
                                         "value": {
                                             "success": false,
                                             "message": "Bad parameter - gender."
                                         }
                                     },
-                                    "failure2": {
+                                    "Example 2 - Bad quantity parameter": {
                                         "value": {
                                             "success": false,
-                                            "message": "Bad parameter - name."
+                                            "message": "Bad parameter - quantity. The quantity must be a number between 1 and 1000."
                                         }
                                     }
                                 }
@@ -298,7 +464,8 @@
                 "type": "object",
                 "properties": {
                     "success": {
-                        "type": "boolean"
+                        "type": "boolean",
+                        "description": "Boolean value indicating whether the request was successful."
                     },
                     "message": {
                         "type": "string",

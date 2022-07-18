@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { pickRandomItem } from '../utils/pickRandomItem.js';
 import { dataToJSON } from '../utils/dataToJSON.js';
-import { isGenderValid } from '../utils/dataValidation.js';
+import { isGenderValid, isQuantityValid } from '../utils/dataValidation.js';
 
 export function randomName(
   req: Request,
@@ -13,10 +13,23 @@ export function randomName(
   const lastNames = dataToJSON(`${dataPath}/lastName.json`);
 
   // parameters
-  let gender = pickRandomItem(['male', 'female']);
+  let quantity = 1;
+  if (req.query.quantity) {
+    if (isQuantityValid(req.query.quantity)) {
+      quantity = Number(req.query.quantity);
+    } else {
+      res.status(400).send({
+        success: false,
+        message:
+          'Bad parameter - quantity. The quantity must be a number between 1 and 1000.',
+      });
+      return;
+    }
+  }
+  let requestedGender: string | null = null;
   if (req.query.gender) {
     if (isGenderValid(req.query.gender)) {
-      gender = req.query.gender.toString();
+      requestedGender = req.query.gender.toString();
     } else {
       res.status(400).send({
         success: false,
@@ -26,18 +39,21 @@ export function randomName(
     }
   }
 
-  // pick random name
-  const randomName = {
-    name: {
-      first: pickRandomItem(firstNames.data[gender]),
-      last: pickRandomItem(lastNames.data),
-    },
-    gender: gender,
-  };
+  // pick random names
+  const randomNames = [];
+  for (let i = 0; i < quantity; i++) {
+    let gender = requestedGender || pickRandomItem(['male', 'female']);
+    randomNames.push({
+      name: {
+        first: pickRandomItem(firstNames.data[gender]),
+        last: pickRandomItem(lastNames.data),
+      },
+      gender: gender,
+    });
+  }
 
-  console.log(randomName);
   res.status(200).json({
     success: true,
-    data: randomName,
+    data: randomNames,
   });
 }
